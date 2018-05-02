@@ -247,7 +247,7 @@ defmodule Sentry.Event do
   def args_from_stacktrace([{_m, _f, a, _} | _]) when is_list(a) do
     Enum.with_index(a)
     |> Enum.map(fn {arg, index} ->
-      {"arg#{index}", inspect(arg)}
+      {"arg#{index}", inspect(arg, limit: :infinity, pretty: true, structs: false, width: 0)}
     end)
     |> Enum.into(%{})
   end
